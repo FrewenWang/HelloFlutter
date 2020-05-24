@@ -1,3 +1,4 @@
+import 'package:demo/pages/discovery_page.dart';
 import 'package:demo/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +22,7 @@ class _TabNavigatorState extends State<BottomTabNavigator> {
     return Scaffold(
       body: PageView(
         controller: _controller,
-        children: <Widget>[HomePage(), HomePage(), HomePage(), HomePage()],
+        children: <Widget>[HomePage(), HomePage(), DiscoveryPage(), HomePage()],
         physics: NeverScrollableScrollPhysics(),
       ),
       bottomNavigationBar: BottomNavigationBar(
