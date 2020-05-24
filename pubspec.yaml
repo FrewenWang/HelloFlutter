@@ -25,6 +25,10 @@ dependencies:
   cupertino_icons: ^0.1.2
   #Flutter路由框架 The brightest, hippest, coolest router for Flutter.
   fluro: "^1.6.3"
+  # Http网络请求框架
+  http: ^0.12.1
+  # Flutter中的ViewPager的控件
+  flutter_swiper: ^1.1.6
 
 dev_dependencies:
   flutter_test:
