@@ -25,7 +25,7 @@ class _TabNavigatorState extends State<BottomTabNavigator> {
         children: <Widget>[HomePage(), HomePage(), DiscoveryPage(), HomePage()],
         physics: NeverScrollableScrollPhysics(),
       ),
-      bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: BottomNavigationBar(   // 系统内置的BottomNavigationBar
           currentIndex: _currentIndex,
           onTap: (index) {
             _controller.jumpToPage(index);
@@ -43,6 +43,8 @@ class _TabNavigatorState extends State<BottomTabNavigator> {
     );
   }
 
+  /// 底部的bottom的导航栏的Item
+  /// 把我们需要标题、IconData、index值传入
   _bottomItem(String title, IconData icon, int index) {
     return BottomNavigationBarItem(
         icon: Icon(
