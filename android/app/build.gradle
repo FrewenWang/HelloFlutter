@@ -8,7 +8,7 @@ if (localPropertiesFile.exists()) {
 
 def flutterRoot = localProperties.getProperty('flutter.sdk')
 if (flutterRoot == null) {
-    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+    throw new Exception("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
 }
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
@@ -53,9 +53,10 @@ android {
         versionName flutterVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         // 只打包一个架构的SO，可以有效地缩减包的大小
-        ndk {
-           abiFilters "armeabi-v7a"  //release模式下只打包 armeabi-v7a的SO
-        }
+        // 目前由于我们需要模拟器中调试，所以暂时先保留
+        //        ndk {
+        //           abiFilters "armeabi-v7a"  //release模式下只打包 armeabi-v7a的SO
+        //        }
     }
     //  增加签名配置
     signingConfigs {
@@ -69,6 +70,10 @@ android {
 
     buildTypes {
         release {
+            // 使用release签名配置
+            signingConfig signingConfigs.release
+        }
+        debug {
             // 使用release签名配置
             signingConfig signingConfigs.release
         }
