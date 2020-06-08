@@ -1,14 +1,15 @@
-import 'package:demo/utils/date_utils.dart';
+import 'package:demo/biz/app/app.dart';
+import 'package:demo/biz/utils/date_utils.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 
 /// 菜单按钮
 class MenuButton extends StatelessWidget {
-  final String mKey;
+  final String id;
   final String assetSrc;
   final String title;
 
-  MenuButton({this.mKey, this.assetSrc, this.title});
+  MenuButton({this.id, this.assetSrc, this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -47,43 +48,58 @@ class MenuButton extends StatelessWidget {
             ],
           ),
           onPressed: () {
-            tappedMenuButton(context, mKey);
+            tappedMenuButton(context, id);
           },
         ),
       ),
     );
   }
 
-  void tappedMenuButton(BuildContext context, String key) {
+  void tappedMenuButton(BuildContext context, String id) {
     String message = "";
     String hexCode = "#FFFFFF";
     String result;
     //TODO 待研究 TransitionType 转场动画类
     TransitionType transitionType = TransitionType.native;
 
-    if (key != "custom" && key != "function-call" && key != "fixed-trans") {
-      if (key == "native") {
+    if (id != "custom" && id != "function-call" && id != "fixed-trans") {
+      if (id == "native") {
         hexCode = "#F76F00";
         message =
             "This screen should have appeared using the default flutter animation for the current OS";
-      } else if (key == "preset-from-left") {
+      } else if (id == "preset-from-left") {
         hexCode = "#5BF700";
         message =
             "This screen should have appeared with a slide in from left transition";
         transitionType = TransitionType.inFromLeft;
-      } else if (key == "preset-fade") {
+      } else if (id == "preset-fade") {
         hexCode = "#F700D2";
         message = "This screen should have appeared with a fade in transition";
         transitionType = TransitionType.fadeIn;
-      } else if (key == "pop-result") {
+      } else if (id == "pop-result") {
         transitionType = TransitionType.native;
         hexCode = "#7d41f4";
         message =
             "When you close this screen you should see the current day of the week";
         result = "Today is ${DateUtils.getCurrentWeekDay()}!";
       }
-    }
 
-    String route = "/demo?message=$message&color_hex=$hexCode";
+      // 计算路由路径
+      String route = "/demo?message=$message&color_hex=$hexCode";
+
+      print("route = " + route);
+
+      if (result != null) {
+        route = "$route&result=$result";
+      }
+
+      Application.router
+          .navigateTo(context, route, transition: transitionType)
+          .then((result) {
+        if (id == "pop-result") {
+          Application.router.navigateTo(context, "/demo/func?message=$result");
+        }
+      });
+    }
   }
 }

@@ -1,7 +1,10 @@
-import 'package:demo/app/app.dart';
-import 'package:demo/examples/fluro/routes/routes.dart';
+import 'package:demo/biz/app/app.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+
+import 'routes/routes.dart';
+
+void main() => runApp(FluroDemo());
 
 ///fluro is a flutter routing library that adds flexible routing options like wildcards,
 ///named parameters and clear route definitions.
@@ -17,6 +20,7 @@ class FluroDemo extends StatefulWidget {
 ///
 class _FluroDemoState extends State<FluroDemo> {
   _FluroDemoState() {
+    /// 实例化Fluro路由对象
     final router = Router();
     Routes.configureRoutes(router);
     Application.router = router;
@@ -26,7 +30,7 @@ class _FluroDemoState extends State<FluroDemo> {
   Widget build(BuildContext context) {
     final app = MaterialApp(
       title: "FluroDemo",
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false, // 这个右上角的Debug标签
       theme: ThemeData(primarySwatch: Colors.blue),
       onGenerateRoute: Application.router.generator,
     );
