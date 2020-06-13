@@ -29,6 +29,8 @@ dependencies:
   http: ^0.12.1
   # Flutter中的ViewPager的控件
   flutter_swiper: ^1.1.6
+  # Dart的功能强大的Http客户端，支持拦截器，全局配置，FormData，请求取消，文件下载，超时等。
+  dio: 3.0.9
 
 dev_dependencies:
   flutter_test:
