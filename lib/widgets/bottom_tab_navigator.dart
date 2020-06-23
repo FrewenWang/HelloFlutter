@@ -1,3 +1,4 @@
+import 'package:demo/aura/widgets/search_bar.dart';
 import 'package:demo/pages/discovery_page.dart';
 import 'package:demo/pages/home_page.dart';
 import 'package:flutter/material.dart';

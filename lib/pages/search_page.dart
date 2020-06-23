@@ -5,18 +5,18 @@ import 'package:demo/model/home_model.dart';
 import 'package:demo/pages/sales_box_model.dart';
 import 'package:demo/widgets/loading_container.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_splash_screen/flutter_splash_screen.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 const APPBAR_SCROLL_OFFSET = 100;
 const SEARCH_BAR_DEFAULT_TEXT = '网红打卡地 景点 酒店 美食';
 
-class HomePage extends StatefulWidget {
+/// 搜索页面的实现
+class SearchPage extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _SearchPageState createState() => _SearchPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _SearchPageState extends State<SearchPage> {
   double appBarAlpha = 0;
   List<CommonModel> localNavList = [];
   List<CommonModel> bannerList = [];
@@ -29,10 +29,8 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _handleRefresh();
-
-    /// 我们在首页进行启动屏的关闭
     Future.delayed(Duration(milliseconds: 600), () {
-      FlutterSplashScreen.hide();
+      // FlutterSplashScreen.hide();
     });
   }
 

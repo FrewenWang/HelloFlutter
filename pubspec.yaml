@@ -31,6 +31,8 @@ dependencies:
   flutter_swiper: ^1.1.6
   # Dart的功能强大的Http客户端，支持拦截器，全局配置，FormData，请求取消，文件下载，超时等。
   dio: 3.0.9
+  # 增加自定义Splash页面，解决启动白屏的问题
+  flutter_splash_screen: ^0.1.0
 
 dev_dependencies:
   flutter_test:
