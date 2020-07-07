@@ -1,3 +1,4 @@
+import 'package:demo/aura/widgets/search_bar.dart';
 import 'package:demo/pages/meituan_service_page.dart';
 import 'package:demo/widgets/top_tab_navigator.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +33,23 @@ class _DiscoveryState extends State<DiscoveryPage>
     return Scaffold(
       backgroundColor: Color(0xfff2f2f2),
       body: _gridView,
+    );
+  }
+
+  /// 发现页面的顶部AppBar
+  Widget get _discoveryAppBar {
+    return Column(
+      children: <Widget>[
+        Container(
+          child: Container(
+            child: SearchBar(
+              hideLeft: true,
+              defaultText: "这是搜索提示",
+              hint: "搜索",
+            ),
+          ),
+        )
+      ],
     );
   }
 

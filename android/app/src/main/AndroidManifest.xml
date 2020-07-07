@@ -26,5 +26,10 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+
+        <!-- 我们在进行适配全面屏的时候，需要添加一下的源数据 -->
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.3" />
     </application>
 </manifest>

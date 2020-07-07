@@ -18,6 +18,8 @@ class _TabNavigatorState extends State<BottomTabNavigator> {
     initialPage: 0,
   );
 
+  /// 用Scaffold的appBar与bottomNavigationBar的页面，是不需要适配全面屏的的，
+  /// 因为Scaffold的框架会自动帮我们进行全面屏的适配
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +28,8 @@ class _TabNavigatorState extends State<BottomTabNavigator> {
         children: <Widget>[HomePage(), HomePage(), DiscoveryPage(), HomePage()],
         physics: NeverScrollableScrollPhysics(),
       ),
-      bottomNavigationBar: BottomNavigationBar(   // 系统内置的BottomNavigationBar
+      bottomNavigationBar: BottomNavigationBar(
+          // 系统内置的BottomNavigationBar
           currentIndex: _currentIndex,
           onTap: (index) {
             _controller.jumpToPage(index);
