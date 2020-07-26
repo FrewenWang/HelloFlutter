@@ -1,6 +1,7 @@
 import 'package:demo/aura/widgets/search_bar.dart';
 import 'package:demo/pages/discovery_page.dart';
 import 'package:demo/pages/home_page.dart';
+import 'package:demo/test/SearchPage.dart';
 import 'package:flutter/material.dart';
 
 /// 底部导航栏的组件
@@ -25,7 +26,7 @@ class _TabNavigatorState extends State<BottomTabNavigator> {
     return Scaffold(
       body: PageView(
         controller: _controller,
-        children: <Widget>[HomePage(), HomePage(), DiscoveryPage(), HomePage()],
+        children: <Widget>[HomePage(), SearchPage(), DiscoveryPage(), HomePage()],
         physics: NeverScrollableScrollPhysics(),
       ),
       bottomNavigationBar: BottomNavigationBar(

@@ -1,3 +1,4 @@
+import 'package:demo/pages/demo_basic_widgets.dart';
 import 'package:demo/widgets/bottom_tab_navigator.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: BottomTabNavigator(),
+      home: DemoBasicWidget(),
     );
   }
 }

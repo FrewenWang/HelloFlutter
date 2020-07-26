@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 
-enum SearchBarType { home, normal, homeLight }
+///
+enum SearchBarType { TopSearch, NormalPage, TopSearchHighLight }
 
 class SearchBar extends StatefulWidget {
   final bool enabled;
-  final bool hideLeft;
+
+  // 判断是否隐藏左侧返回按钮
+  final bool hideLeftBtn;
   final SearchBarType searchBarType;
   final String hint;
+
+  /// 进入搜索框的默认文字
   final String defaultText;
   final void Function() leftButtonClick;
   final void Function() rightButtonClick;
@@ -19,10 +24,10 @@ class SearchBar extends StatefulWidget {
   const SearchBar(
       {Key key,
       this.enabled = true,
-      this.hideLeft,
-      this.searchBarType = SearchBarType.normal,
+      this.hideLeftBtn,
+      this.searchBarType = SearchBarType.NormalPage,
       this.hint,
-      this.defaultText,
+      this.defaultText = "",
       this.leftButtonClick,
       this.rightButtonClick,
       this.speakClick,
@@ -34,10 +39,13 @@ class SearchBar extends StatefulWidget {
   _SearchBarState createState() => _SearchBarState();
 }
 
+/// SearchBarState
 class _SearchBarState extends State<SearchBar> {
   /// 是否显示清除按钮
-  bool showClear = false;
+  bool showClearBtn = false;
+
   /// 文字编辑的控制器
+  /// 这个TextEditingController可以设置TextField的文字，清空等
   final TextEditingController _controller = TextEditingController();
 
   @override
@@ -52,18 +60,23 @@ class _SearchBarState extends State<SearchBar> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.searchBarType == SearchBarType.normal
-        ? _genNormalSearch()
-        : _genHomeSearch();
+    return widget.searchBarType == SearchBarType.NormalPage
+        ? _createNormalSearchPage()
+        : _createTopSearchBar();
   }
 
-  _genNormalSearch() {
+  /// 常见通用页面Page的Search页面
+  ///
+  _createNormalSearchPage() {
     return Container(
+      ///Row 线性布局
       child: Row(children: <Widget>[
-        _wrapTap(
+        _wrapTapWidget(
             Container(
               padding: EdgeInsets.fromLTRB(6, 5, 10, 5),
-              child: widget?.hideLeft ?? false
+              // 判断hideLeftBtn按钮的属性是否是false 如果是则异常左侧按钮
+              // 设置Icon的大小
+              child: widget?.hideLeftBtn ?? false
                   ? null
                   : Icon(
                       Icons.arrow_back_ios,
@@ -74,11 +87,11 @@ class _SearchBarState extends State<SearchBar> {
             widget.leftButtonClick),
         Expanded(
           flex: 1,
-          child: _inputBox(),
+          child: _searchInputBox(),
         ),
-        _wrapTap(
+        _wrapTapWidget(
             Container(
-              padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+              padding: EdgeInsets.fromLTRB(10, 0, 10, 5),
               child: Text(
                 '搜索',
                 style: TextStyle(color: Colors.blue, fontSize: 17),
@@ -89,21 +102,23 @@ class _SearchBarState extends State<SearchBar> {
     );
   }
 
-  _genHomeSearch() {
+  /// 返回顶部的搜索框组件
+  _createTopSearchBar() {
     return Container(
       child: Row(children: <Widget>[
-        _wrapTap(
+        _wrapTapWidget(
             Container(
                 padding: EdgeInsets.fromLTRB(6, 5, 5, 5),
                 child: Row(
                   children: <Widget>[
                     Text(
                       '上海',
-                      style: TextStyle(color: _homeFontColor(), fontSize: 14),
+                      style: TextStyle(
+                          color: _topSearchBarFontColor(), fontSize: 14),
                     ),
                     Icon(
                       Icons.expand_more,
-                      color: _homeFontColor(),
+                      color: _topSearchBarFontColor(),
                       size: 22,
                     )
                   ],
@@ -111,14 +126,14 @@ class _SearchBarState extends State<SearchBar> {
             widget.leftButtonClick),
         Expanded(
           flex: 1,
-          child: _inputBox(),
+          child: _searchInputBox(),
         ),
-        _wrapTap(
+        _wrapTapWidget(
             Container(
               padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
               child: Icon(
                 Icons.comment,
-                color: _homeFontColor(),
+                color: _topSearchBarFontColor(),
                 size: 26,
               ),
             ),
@@ -128,82 +143,42 @@ class _SearchBarState extends State<SearchBar> {
   }
 
   /// 这是输入框相关的组件
-  _inputBox() {
+  _searchInputBox() {
     Color inputBoxColor;
-    if (widget.searchBarType == SearchBarType.home) {
+    if (widget.searchBarType == SearchBarType.TopSearch) {
       inputBoxColor = Colors.white;
     } else {
       inputBoxColor = Color(int.parse('0xffEDEDED'));
     }
     return Container(
-      height: 30,
+      height: 35,
       padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
       decoration: BoxDecoration(
           color: inputBoxColor,
+          // 输入框的圆角半径
           borderRadius: BorderRadius.circular(
-              widget.searchBarType == SearchBarType.normal ? 5 : 15)),
+              widget.searchBarType == SearchBarType.NormalPage ? 5 : 15)),
       child: Row(
         children: <Widget>[
           Icon(
             Icons.search,
-            size: 20,
-            color: widget.searchBarType == SearchBarType.normal
+            size: 22,
+            color: widget.searchBarType == SearchBarType.NormalPage
                 ? Color(0xffA9A9A9)
                 : Colors.blue,
           ),
-          Expanded(
-              flex: 1,
-              child: widget.searchBarType == SearchBarType.normal
-                  ? TextField(
-                      controller: _controller,
-                      onChanged: _onChanged,
-                      autofocus: true,
-                      style: TextStyle(
-                          fontSize: 18.0,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w300),
-                      //输入文本的样式
-                      decoration: InputDecoration(
-                        contentPadding: EdgeInsets.fromLTRB(5, 0, 5, 0),
-                        border: InputBorder.none,
-                        hintText: widget.hint ?? '',
-                        hintStyle: TextStyle(fontSize: 15),
-                      ))
-                  : _wrapTap(
-                      Container(
-                        child: Text(
-                          widget.defaultText,
-                          style: TextStyle(fontSize: 13, color: Colors.grey),
-                        ),
-                      ),
-                      widget.inputBoxClick)),
-          !showClear
-              ? _wrapTap(
-                  Icon(
-                    Icons.mic,
-                    size: 22,
-                    color: widget.searchBarType == SearchBarType.normal
-                        ? Colors.blue
-                        : Colors.grey,
-                  ),
-                  widget.speakClick)
-              : _wrapTap(
-                  Icon(
-                    Icons.clear,
-                    size: 22,
-                    color: Colors.grey,
-                  ), () {
-                  setState(() {
-                    _controller.clear();
-                  });
-                  _onChanged('');
-                })
+          _getCenterTextInputFiled(),
+
+          /// 使用Expanded来封装Row的子组件，弹性系数为1.即占满素所有剩余组件
+          !showClearBtn ? _getTextInputMicWidget() : _getTextInputClearWidget()
         ],
       ),
     );
   }
 
-  _wrapTap(Widget child, void Function() callback) {
+  /// 这个方法其实就是针对可以点击的组件封装
+  /// 然后将组件封装成GestureDetector
+  _wrapTapWidget(Widget child, void Function() callback) {
     return GestureDetector(
       onTap: () {
         if (callback != null) callback();
@@ -213,15 +188,15 @@ class _SearchBarState extends State<SearchBar> {
   }
 
   /// 输入框的文件变化的监听
-  /// 入参：输入框的文字
-  _onChanged(String text) {
+  /// 入参：输入框的文字.输入框有内容，显示
+  _onTextInputChanged(String text) {
     if (text.length > 0) {
       setState(() {
-        showClear = true;
+        showClearBtn = true;
       });
     } else {
       setState(() {
-        showClear = false;
+        showClearBtn = false;
       });
     }
     if (widget.onChanged != null) {
@@ -229,9 +204,66 @@ class _SearchBarState extends State<SearchBar> {
     }
   }
 
-  _homeFontColor() {
-    return widget.searchBarType == SearchBarType.homeLight
+  /// 顶部搜索按钮的字体颜色设置
+  _topSearchBarFontColor() {
+    return widget.searchBarType == SearchBarType.TopSearchHighLight
         ? Colors.black54
         : Colors.white;
+  }
+
+  /// 获取搜索框右侧的麦克风组件
+  _getTextInputMicWidget() {
+    return _wrapTapWidget(
+        Icon(
+          Icons.mic,
+          size: 22,
+          color: widget.searchBarType == SearchBarType.NormalPage
+              ? Colors.blue
+              : Colors.grey,
+        ),
+        widget.speakClick);
+  }
+
+  _getTextInputClearWidget() {
+    return _wrapTapWidget(
+        Icon(
+          Icons.clear,
+          size: 22,
+          color: Colors.grey,
+        ), () {
+      setState(() {
+        _controller.clear();
+      });
+      _onTextInputChanged('');
+    });
+  }
+
+  _getCenterTextInputFiled() {
+    return Expanded(
+        flex: 1,
+        child: widget.searchBarType == SearchBarType.NormalPage
+            ? TextField(
+                controller: _controller,
+                onChanged: _onTextInputChanged,
+                autofocus: true,
+                style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w300),
+                //输入框文本的样式
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                  border: InputBorder.none,
+                  hintText: widget.hint ?? '',
+                  hintStyle: TextStyle(fontSize: 10),
+                ))
+            : _wrapTapWidget(
+                Container(
+                  child: Text(
+                    widget.defaultText,
+                    style: TextStyle(fontSize: 13, color: Colors.grey),
+                  ),
+                ),
+                widget.inputBoxClick));
   }
 }

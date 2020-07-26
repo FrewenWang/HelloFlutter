@@ -43,7 +43,7 @@ class _DiscoveryState extends State<DiscoveryPage>
         Container(
           child: Container(
             child: SearchBar(
-              hideLeft: true,
+              hideLeftBtn: true,
               defaultText: "这是搜索提示",
               hint: "搜索",
             ),

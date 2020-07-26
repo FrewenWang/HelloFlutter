@@ -12,7 +12,8 @@ class MainActivity : FlutterActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         // 添加的Splash的启动页
         // https://pub.dev/packages/flutter_splash_screen#-installing-tab-
-        SplashScreen.show(this, true)
+        // TODO 为了测试方便，我们先关闭闪屏的显示
+        // SplashScreen.show(this, true)
         super.onCreate(savedInstanceState)
     }
 

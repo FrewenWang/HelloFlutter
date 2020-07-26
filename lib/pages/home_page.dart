@@ -1,3 +1,4 @@
+import 'package:demo/aura/widgets/search_bar.dart';
 import 'package:demo/dao/home_dao.dart';
 import 'package:demo/model/common_model.dart';
 import 'package:demo/model/grid_nav_model.dart';
@@ -17,6 +18,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  /// 顶部的AppBar的透明度
   double appBarAlpha = 0;
   List<CommonModel> localNavList = [];
   List<CommonModel> bannerList = [];
@@ -123,9 +125,12 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  /// 设置首页的AppBar.我们首页_appBar是一个Column
   Widget get _appBar {
     return Column(
       children: <Widget>[
+        /// 是一个Container组件。里面加一个装饰器，
+        /// 装饰器里面是一个LinearGradient线性渐变组件
         Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -135,13 +140,15 @@ class _HomePageState extends State<HomePage> {
               end: Alignment.bottomCenter,
             ),
           ),
+          // 然后填充一个Container容器组件。里面承载我们的SearchBar
           child: Container(
             padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
             height: 80.0,
             decoration: BoxDecoration(
               color: Color.fromARGB((appBarAlpha * 255).toInt(), 255, 255, 255),
             ),
-            child: Text("搜索页面"),
+            child: SearchBar(
+                hideLeftBtn: true, searchBarType: SearchBarType.TopSearch),
           ),
         ),
         Container(
