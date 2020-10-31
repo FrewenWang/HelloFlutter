@@ -4,6 +4,7 @@ import 'package:demo/model/common_model.dart';
 import 'package:demo/model/grid_nav_model.dart';
 import 'package:demo/model/home_model.dart';
 import 'package:demo/pages/sales_box_model.dart';
+import 'package:demo/widgets/home/top_local_gridview.dart';
 import 'package:demo/widgets/loading_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_splash_screen/flutter_splash_screen.dart';
@@ -12,6 +13,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 const APPBAR_SCROLL_OFFSET = 100;
 const SEARCH_BAR_DEFAULT_TEXT = '网红打卡地 景点 酒店 美食';
 
+/// 这个是首页的相关逻辑
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -101,13 +103,14 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  /// 这个是内容区域的ListView的相关布局
   Widget get _listView {
     return ListView(
       children: <Widget>[
         _banner,
         Padding(
           padding: EdgeInsets.fromLTRB(7, 4, 7, 4),
-          child: Text("你好"),
+          child: TopLocalGridView(topLocalNavList: localNavList),
         ),
         Padding(
           padding: EdgeInsets.fromLTRB(7, 0, 7, 4),

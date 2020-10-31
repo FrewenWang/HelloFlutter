@@ -33,6 +33,8 @@ dependencies:
   dio: 3.0.9
   # 增加自定义Splash页面，解决启动白屏的问题
   flutter_splash_screen: ^0.1.0
+  # Flutter的Toast的显示框架：Fluttertoast.showToast()
+  fluttertoast: ^7.0.2
 
 dev_dependencies:
   flutter_test:

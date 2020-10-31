@@ -8,6 +8,9 @@ const HOME_URL = 'http://www.devio.org/io/flutter_app/json/home_page.json';
 ///首页大接口
 class HomeDao {
   static Future<HomeModel> fetch() async {
+    // 运行的时候.发现报错：
+    /// How to solve SocketException: Failed host lookup: 'www.xyz.com' (OS Error: No address associated with hostname, errno = 7)
+    ///
     final response = await http.get(HOME_URL);
     if (response.statusCode == 200) {
       Utf8Decoder utf8decoder = Utf8Decoder(); // fix 中文乱码
