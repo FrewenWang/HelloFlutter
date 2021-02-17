@@ -3,7 +3,9 @@ import 'package:demo/dao/home_dao.dart';
 import 'package:demo/model/common_model.dart';
 import 'package:demo/model/grid_nav_model.dart';
 import 'package:demo/model/home_model.dart';
+import 'package:demo/navigator/navigator_utils.dart';
 import 'package:demo/pages/sales_box_model.dart';
+import 'package:demo/pages/search_page.dart';
 import 'package:demo/widgets/home/top_local_gridview.dart';
 import 'package:demo/widgets/loading_container.dart';
 import 'package:flutter/material.dart';
@@ -75,6 +77,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    /// Scaffold是脚手架工具，可以帮我们提供页面的初始化布局左很多工作
     return Scaffold(
       backgroundColor: Color(0xfff2f2f2),
       body: LoadingContainer(
@@ -87,6 +90,7 @@ class _HomePageState extends State<HomePage> {
                 child: RefreshIndicator(
                     onRefresh: _handleRefresh,
                     child: NotificationListener(
+                      // ignore: missing_return
                       onNotification: (scrollNotification) {
                         if (scrollNotification is ScrollUpdateNotification &&
                             scrollNotification.depth == 0) {
@@ -151,7 +155,9 @@ class _HomePageState extends State<HomePage> {
               color: Color.fromARGB((appBarAlpha * 255).toInt(), 255, 255, 255),
             ),
             child: SearchBar(
-                hideLeftBtn: true, searchBarType: SearchBarType.TopSearch),
+                hideLeftBtn: true,
+                searchBarType: SearchBarType.TopSearch,
+                inputBoxClick: _jumpToSearch),
           ),
         ),
         Container(
@@ -185,8 +191,14 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  /// 这个一个普通方法的调用，
+  /// TODO 为什么普通方法可以直接使用方法名，不需要括号可以直接调用
   _jumpToSearch() {
-    // TODO 页面跳转
+    NavigatorUtil.push(
+        context,
+        SearchPage(
+          hintSearchText: SEARCH_BAR_DEFAULT_TEXT,
+        ));
   }
 
   _jumpToSpeak() {

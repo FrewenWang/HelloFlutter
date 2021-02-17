@@ -1,19 +1,44 @@
+/// 搜索的实体的Model
 class SearchModel {
-  final String icon;
-  final String title;
-  final String url;
-  final String statusBarColor;
-  final bool hideAppBar;
+  String keyWord;
+  final List<SearchItem> data;
 
-  SearchModel(
-      {this.icon, this.title, this.url, this.statusBarColor, this.hideAppBar});
+  SearchModel({this.data});
 
   factory SearchModel.fromJson(Map<String, dynamic> json) {
-    return SearchModel(
-        icon: json['icon'],
-        title: json['title'],
-        url: json['url'],
-        statusBarColor: json['statusBarColor'],
-        hideAppBar: json['hideAppBar']);
+    var dataJson = json['data'] as List;
+    List<SearchItem> data =
+        dataJson.map((e) => SearchItem.fromJson(e)).toList();
+    return SearchModel(data: data);
+  }
+}
+
+class SearchItem {
+  final String word; //xx酒店
+  final String type; //hotel
+  final String price; //实时计价
+  final String star; //豪华型
+  final String zoneName; //虹桥
+  final String districtName; //上海
+  final String url;
+
+  SearchItem({this.word,
+    this.type,
+    this.price,
+    this.star,
+    this.zoneName,
+    this.districtName,
+    this.url});
+
+  factory SearchItem.fromJson(Map<String, dynamic> json) {
+    return SearchItem(
+      word: json['word'],
+      type: json['type'],
+      price: json['price'],
+      star: json['star'],
+      zoneName: json['zonename'],
+      districtName: json['districtname'],
+      url: json['url'],
+    );
   }
 }

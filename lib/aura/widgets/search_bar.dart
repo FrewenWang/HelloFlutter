@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 ///
 enum SearchBarType { TopSearch, NormalPage, TopSearchHighLight }
 
+/// 我们定义一个状态型组件
+///
 class SearchBar extends StatefulWidget {
   final bool enabled;
 
@@ -13,6 +15,8 @@ class SearchBar extends StatefulWidget {
 
   /// 进入搜索框的默认文字
   final String defaultText;
+
+  /// SearchBar的构造方法的回调
   final void Function() leftButtonClick;
   final void Function() rightButtonClick;
   final void Function() speakClick;
@@ -21,6 +25,8 @@ class SearchBar extends StatefulWidget {
   /// 这个SearchBar的输入文字监听
   final ValueChanged<String> onChanged;
 
+  /// 构造函数
+  /// 构造函数传入的参数是一个对象
   const SearchBar(
       {Key key,
       this.enabled = true,
@@ -199,6 +205,8 @@ class _SearchBarState extends State<SearchBar> {
         showClearBtn = false;
       });
     }
+
+    /// 回调到外部
     if (widget.onChanged != null) {
       widget.onChanged(text);
     }
@@ -238,6 +246,7 @@ class _SearchBarState extends State<SearchBar> {
     });
   }
 
+  /// 获取输入法的内容布局区域
   _getCenterTextInputFiled() {
     return Expanded(
         flex: 1,
@@ -245,13 +254,14 @@ class _SearchBarState extends State<SearchBar> {
             ? TextField(
                 controller: _controller,
                 onChanged: _onTextInputChanged,
+                // 监听TextField的onChanged
                 autofocus: true,
                 style: TextStyle(
                     fontSize: 18,
                     color: Colors.black,
                     fontWeight: FontWeight.w300),
-                //输入框文本的样式
                 decoration: InputDecoration(
+                  //输入框文本的样式,设置输入框contentPadding、边距、hintText、hintStyle
                   contentPadding: EdgeInsets.fromLTRB(5, 0, 5, 0),
                   border: InputBorder.none,
                   hintText: widget.hint ?? '',
