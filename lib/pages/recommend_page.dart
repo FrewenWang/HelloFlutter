@@ -2,7 +2,7 @@ import 'package:demo/dao/home_dao.dart';
 import 'package:demo/model/common_model.dart';
 import 'package:demo/model/grid_nav_model.dart';
 import 'package:demo/model/home_model.dart';
-import 'package:demo/pages/sales_box_model.dart';
+import 'package:demo/model/sales_box_model.dart';
 import 'package:demo/widgets/loading_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';

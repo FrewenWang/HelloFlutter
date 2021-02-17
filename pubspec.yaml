@@ -24,7 +24,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   #Flutter路由框架 The brightest, hippest, coolest router for Flutter.
-  fluro: "^1.6.3"
+  fluro: "^1.7.8"
   # Http网络请求框架
   http: ^0.12.1
   # Flutter中的ViewPager的控件
@@ -35,6 +35,8 @@ dependencies:
   flutter_splash_screen: ^0.1.0
   # Flutter的Toast的显示框架：Fluttertoast.showToast()
   fluttertoast: ^7.0.2
+  # WebView控件 https://pub.dev/packages/flutter_webview_plugin
+  flutter_webview_plugin: ^0.3.11
 
 dev_dependencies:
   flutter_test:

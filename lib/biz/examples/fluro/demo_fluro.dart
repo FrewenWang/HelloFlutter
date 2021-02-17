@@ -1,7 +1,6 @@
 import 'package:demo/biz/app/app.dart';
-import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-
+import 'package:fluro/fluro.dart';
 import 'routes/routes.dart';
 
 void main() => runApp(FluroDemo());
@@ -21,7 +20,7 @@ class FluroDemo extends StatefulWidget {
 class _FluroDemoState extends State<FluroDemo> {
   _FluroDemoState() {
     /// 实例化Fluro路由对象
-    final router = Router();
+    final router = FluroRouter();
     Routes.configureRoutes(router);
     Application.router = router;
   }

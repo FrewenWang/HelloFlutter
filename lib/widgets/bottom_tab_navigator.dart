@@ -1,6 +1,7 @@
 import 'package:demo/aura/widgets/search_bar.dart';
 import 'package:demo/pages/discovery_page.dart';
 import 'package:demo/pages/home_page.dart';
+import 'package:demo/pages/profile_page.dart';
 import 'package:demo/test/SearchPage.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +27,12 @@ class _TabNavigatorState extends State<BottomTabNavigator> {
     return Scaffold(
       body: PageView(
         controller: _controller,
-        children: <Widget>[HomePage(), SearchPage(), DiscoveryPage(), HomePage()],
+        children: <Widget>[
+          HomePage(),
+          SearchPage(),
+          DiscoveryPage(),
+          MyProfilePage()
+        ],
         physics: NeverScrollableScrollPhysics(),
       ),
       bottomNavigationBar: BottomNavigationBar(

@@ -8,7 +8,7 @@
 import 'package:demo/model/common_model.dart';
 import 'package:demo/model/config_model.dart';
 import 'package:demo/model/grid_nav_model.dart';
-import 'package:demo/pages/sales_box_model.dart';
+import 'package:demo/model/sales_box_model.dart';
 
 class HomeModel {
   final ConfigModel config;

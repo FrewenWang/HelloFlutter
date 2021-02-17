@@ -3,9 +3,12 @@ import 'package:demo/dao/home_dao.dart';
 import 'package:demo/model/common_model.dart';
 import 'package:demo/model/grid_nav_model.dart';
 import 'package:demo/model/home_model.dart';
+import 'package:demo/model/sales_box_model.dart';
 import 'package:demo/navigator/navigator_utils.dart';
-import 'package:demo/pages/sales_box_model.dart';
 import 'package:demo/pages/search_page.dart';
+import 'package:demo/widgets/home/custom_grid_view_layout.dart';
+import 'package:demo/widgets/home/sub_nav_view_layout.dart';
+import 'package:demo/widgets/home/sub_sales_box.dart';
 import 'package:demo/widgets/home/top_local_gridview.dart';
 import 'package:demo/widgets/loading_container.dart';
 import 'package:flutter/material.dart';
@@ -118,15 +121,15 @@ class _HomePageState extends State<HomePage> {
         ),
         Padding(
           padding: EdgeInsets.fromLTRB(7, 0, 7, 4),
-          child: Text("我好"),
+          child: CustomGridViewLayout(gridNavModel: gridNavModel),
         ),
         Padding(
           padding: EdgeInsets.fromLTRB(7, 0, 7, 4),
-          child: Text("大家好"),
+          child: SubNav(subNavList: subNavList),
         ),
         Padding(
           padding: EdgeInsets.fromLTRB(7, 0, 7, 4),
-          child: Text("他们好"),
+          child: SalesBox(salesBox: salesBoxModel),
         ),
       ],
     );
@@ -149,7 +152,7 @@ class _HomePageState extends State<HomePage> {
           ),
           // 然后填充一个Container容器组件。里面承载我们的SearchBar
           child: Container(
-            padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+            padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
             height: 80.0,
             decoration: BoxDecoration(
               color: Color.fromARGB((appBarAlpha * 255).toInt(), 255, 255, 255),
@@ -168,6 +171,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  /// 这个是顶部的Banner的View
   Widget get _banner {
     return Container(
       height: 160,
