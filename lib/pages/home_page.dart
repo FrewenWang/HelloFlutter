@@ -160,6 +160,7 @@ class _HomePageState extends State<HomePage> {
             child: SearchBar(
                 hideLeftBtn: true,
                 searchBarType: SearchBarType.TopSearch,
+                speakClick: _jumpToVoiceSpeak,
                 inputBoxClick: _jumpToSearch),
           ),
         ),
@@ -205,7 +206,7 @@ class _HomePageState extends State<HomePage> {
         ));
   }
 
-  _jumpToSpeak() {
-    // TODO 页面跳转
+  _jumpToVoiceSpeak() {
+    // NavigatorUtil.push(context, VoiceSpeakPage());
   }
 }

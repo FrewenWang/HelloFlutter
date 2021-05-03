@@ -1,4 +1,4 @@
-import 'package:demo/pages/demo_basic_widgets.dart';
+import 'package:demo/biz/examples/basic/demo_basic_widgets.dart';
 import 'package:demo/widgets/bottom_tab_navigator.dart';
 import 'package:flutter/material.dart';
 

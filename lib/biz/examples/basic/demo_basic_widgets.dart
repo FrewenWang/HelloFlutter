@@ -1,5 +1,18 @@
 import 'package:flutter/material.dart';
 
+void main() => runApp(DemoBasicWidgetApp());
+
+class DemoBasicWidgetApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new MaterialApp(
+      title: "MyExpansionTileApp",
+      theme: new ThemeData.light(),
+      home: DemoBasicWidget(),
+    );
+  }
+}
+
 class DemoBasicWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -11,19 +24,22 @@ class DemoBasicWidget extends StatelessWidget {
 
       /// 我们这里学习使用GridView
       /// https://book.flutterchina.club/chapter6/gridview.html
-      ///
       body: GridView.builder(
           itemCount: BaseWidgets.length,
           padding: EdgeInsets.all(2),
+
           /// SliverGridDelegateWithFixedCrossAxisCount
           /// 该子类实现了一个横轴为固定数量子元素的layout算法
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             ///横轴子元素的数量。此属性值确定后子元素在横轴的长度就确定了，即ViewPort横轴长度除以crossAxisCount的商。
             crossAxisCount: 2,
+
             /// 横轴方向子元素的间距。
             crossAxisSpacing: 5,
+
             /// 主轴方向的间距。
             mainAxisSpacing: 16,
+
             /// 子元素在横轴长度和主轴长度的比例。由于crossAxisCount指定后，子元素横轴长度就确定了，然后通过此参数值就可以确定子元素在主轴的长度。
             childAspectRatio: 1.0,
           ),
@@ -104,6 +120,34 @@ const BaseWidgets = [
   ),
   BaseWidgetsItem(
     title: 'Sliver系列组件',
+    description: '自定义高级滚动组件，float、snap、pinned效果任你组合',
+  ),
+  BaseWidgetsItem(
+    title: 'ExpansionTile组件',
+    description: '自定义高级滚动组件，float、snap、pinned效果任你组合',
+  ),
+  BaseWidgetsItem(
+    title: 'FlexLayout',
+    description: '自定义高级滚动组件，float、snap、pinned效果任你组合',
+  ),
+  BaseWidgetsItem(
+    title: 'FlexLayout',
+    description: '自定义高级滚动组件，float、snap、pinned效果任你组合',
+  ),
+  BaseWidgetsItem(
+    title: 'FlexLayout',
+    description: '自定义高级滚动组件，float、snap、pinned效果任你组合',
+  ),
+  BaseWidgetsItem(
+    title: 'FlexLayout',
+    description: '自定义高级滚动组件，float、snap、pinned效果任你组合',
+  ),
+  BaseWidgetsItem(
+    title: 'FlexLayout',
+    description: '自定义高级滚动组件，float、snap、pinned效果任你组合',
+  ),
+  BaseWidgetsItem(
+    title: 'FlexLayout',
     description: '自定义高级滚动组件，float、snap、pinned效果任你组合',
   ),
 ];

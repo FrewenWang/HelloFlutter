@@ -32,7 +32,6 @@ class DemoExpandedPage extends StatelessWidget {
               decoration: BoxDecoration(
                 /// 圆角弧度
                 borderRadius: BorderRadius.circular(20),
-
                 /// 渐变矩形
                 gradient: LinearGradient(colors: [Colors.blue, Colors.purple]),
               ),

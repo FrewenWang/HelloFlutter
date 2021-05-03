@@ -22,12 +22,12 @@ var demoRouteHandler = Handler(
   print("handlerFunc ==== $message, $colorHex,$result");
   return DemoSimplePage(message: message, color: color, result: result);
 });
+
 var demoFunctionHandler = Handler(
     type: HandlerType.function,
     // ignore: missing_return
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
       String message = params["message"]?.first;
-
       showDialog(
         context: context,
         builder: (context) {

@@ -5,8 +5,8 @@ import 'routes/routes.dart';
 
 void main() => runApp(FluroDemo());
 
-///fluro is a flutter routing library that adds flexible routing options like wildcards,
-///named parameters and clear route definitions.
+/// fluro is a flutter routing library that adds flexible routing options like wildcards,
+/// named parameters and clear route definitions.
 /// Fluro是一个Flutter路由库，它添加了通配符、命名参数和清晰路由定义等灵活的路由选项。
 /// 参见：https://github.com/theyakka/fluro
 class FluroDemo extends StatefulWidget {
@@ -16,7 +16,7 @@ class FluroDemo extends StatefulWidget {
   }
 }
 
-///
+/// Fluro的路由的Demo的States
 class _FluroDemoState extends State<FluroDemo> {
   _FluroDemoState() {
     /// 实例化Fluro路由对象

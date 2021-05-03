@@ -108,7 +108,9 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
 
-  void _jumpToSpeak() {}
+  void _jumpToSpeak() {
+
+  }
 
   void _onTextChange(String text) {
     keyWord = text;
